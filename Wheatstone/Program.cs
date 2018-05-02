@@ -1,9 +1,13 @@
-﻿namespace Wheatstone
+﻿using System;
+
+namespace Wheatstone
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            var form = new GUI();
+            form.ShowDialog();
         }
     }
 }
