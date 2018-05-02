@@ -1,4 +1,7 @@
-﻿namespace Wheatstone
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace Wheatstone
 {
     partial class GUI
     {
@@ -43,6 +46,9 @@
             this.diagramBox.TabIndex = 0;
             this.diagramBox.TabStop = false;
             this.diagramBox.Paint += new System.Windows.Forms.PaintEventHandler(this.diagramBox_Paint);
+            this.diagramBox.BackColor = Color.White;
+            this.diagramBox.BorderStyle = BorderStyle.FixedSingle;
+
             // 
             // button1
             // 

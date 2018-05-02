@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -33,7 +34,42 @@ namespace Wheatstone
 
         private void button2_Click(object sender, EventArgs e)
         {
-            DrawLine(100);
+            DrawCurve();
+        }
+
+        private void DrawCurve()
+        {
+            var points = CalculatePoints();
+            var diffY = points[0].Y - points[499].Y;
+            var lowestY = points[499].Y;
+
+            for (int i = 0; i < 500; i++)
+            {
+                points[i].Y += (lowestY*-1);
+                points[i].Y *= 500/diffY;
+            }
+
+            var foo = this.diagramBox.CreateGraphics();
+            foo.DrawCurve(new Pen(Color.Aqua),points );
+        }
+
+        private PointF[] CalculatePoints()
+        {
+            var result = new PointF[500];
+            for (int i = 0; i < 500; i++)
+            {
+                result[i] = new PointF(i,CalculateCurrent(i));
+            }
+            return result;
+        }
+
+        private float CalculateCurrent(int i)
+        {
+            float baseCurrent = 10;
+            float staticResistor = 10000;
+            float variableResistor = 6000;
+            return baseCurrent * ((variableResistor * staticResistor - staticResistor * i*20) /
+                                          ((variableResistor + staticResistor) * (staticResistor + i*20)));
         }
 
         private void button3_Click(object sender, EventArgs e)
