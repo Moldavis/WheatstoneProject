@@ -36,7 +36,7 @@ namespace Wheatstone
             this.buttonToClearImage = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.unknownResistorInputLabel = new System.Windows.Forms.Label();
             this.voltageUpperBorderLabel = new System.Windows.Forms.Label();
             this.voltageLowerBorderLabel = new System.Windows.Forms.Label();
             this.voltageZeroLabel = new System.Windows.Forms.Label();
@@ -45,6 +45,8 @@ namespace Wheatstone
             this.resistorSecondLabel = new System.Windows.Forms.Label();
             this.ResistorThirdLabel = new System.Windows.Forms.Label();
             this.resistorFourthLabel = new System.Windows.Forms.Label();
+            this.resistorUpperLabel = new System.Windows.Forms.Label();
+            this.checkBoxClearGraphs = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.diagramBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +85,7 @@ namespace Wheatstone
             // 
             this.textBox1.Location = new System.Drawing.Point(561, 586);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(43, 20);
+            this.textBox1.Size = new System.Drawing.Size(71, 20);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "10000";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -99,14 +101,14 @@ namespace Wheatstone
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
             // 
-            // label1
+            // unknownResistorInputLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(586, 255);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "unknown resisitor in Ohm";
+            this.unknownResistorInputLabel.AutoSize = true;
+            this.unknownResistorInputLabel.Location = new System.Drawing.Point(586, 255);
+            this.unknownResistorInputLabel.Name = "unknownResistorInputLabel";
+            this.unknownResistorInputLabel.Size = new System.Drawing.Size(123, 13);
+            this.unknownResistorInputLabel.TabIndex = 6;
+            this.unknownResistorInputLabel.Text = "unknown resistor in Ohm";
             // 
             // voltageUpperBorderLabel
             // 
@@ -176,11 +178,32 @@ namespace Wheatstone
             this.resistorFourthLabel.Size = new System.Drawing.Size(0, 13);
             this.resistorFourthLabel.TabIndex = 14;
             // 
+            // resistorUpperLabel
+            // 
+            this.resistorUpperLabel.AutoSize = true;
+            this.resistorUpperLabel.Location = new System.Drawing.Point(638, 589);
+            this.resistorUpperLabel.Name = "resistorUpperLabel";
+            this.resistorUpperLabel.Size = new System.Drawing.Size(29, 13);
+            this.resistorUpperLabel.TabIndex = 15;
+            this.resistorUpperLabel.Text = "Ohm";
+            // 
+            // checkBoxClearGraphs
+            // 
+            this.checkBoxClearGraphs.AutoSize = true;
+            this.checkBoxClearGraphs.Location = new System.Drawing.Point(586, 297);
+            this.checkBoxClearGraphs.Name = "checkBoxClearGraphs";
+            this.checkBoxClearGraphs.Size = new System.Drawing.Size(101, 17);
+            this.checkBoxClearGraphs.TabIndex = 16;
+            this.checkBoxClearGraphs.Text = "clear old graphs";
+            this.checkBoxClearGraphs.UseVisualStyleBackColor = true;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 646);
+            this.Controls.Add(this.checkBoxClearGraphs);
+            this.Controls.Add(this.resistorUpperLabel);
             this.Controls.Add(this.resistorFourthLabel);
             this.Controls.Add(this.ResistorThirdLabel);
             this.Controls.Add(this.resistorSecondLabel);
@@ -189,7 +212,7 @@ namespace Wheatstone
             this.Controls.Add(this.voltageZeroLabel);
             this.Controls.Add(this.voltageLowerBorderLabel);
             this.Controls.Add(this.voltageUpperBorderLabel);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.unknownResistorInputLabel);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.buttonToClearImage);
@@ -210,7 +233,7 @@ namespace Wheatstone
         private System.Windows.Forms.Button buttonToClearImage;
         private TextBox textBox1;
         private TextBox textBox2;
-        private Label label1;
+        private Label unknownResistorInputLabel;
         private Label voltageUpperBorderLabel;
         private Label voltageLowerBorderLabel;
         private Label voltageZeroLabel;
@@ -219,5 +242,7 @@ namespace Wheatstone
         private Label resistorSecondLabel;
         private Label ResistorThirdLabel;
         private Label resistorFourthLabel;
+        private Label resistorUpperLabel;
+        private CheckBox checkBoxClearGraphs;
     }
 }

@@ -21,9 +21,9 @@ namespace Wheatstone
         private void SetDiagramText()
         {
             this.resistorFirstLabel.Text = $"{this.valueRange / 5} Ohm";
-            this.resistorSecondLabel.Text = $"{2*this.valueRange / 5} Ohm";
-            this.ResistorThirdLabel.Text = $"{3*this.valueRange / 5} Ohm";
-            this.resistorFourthLabel.Text = $"{4*this.valueRange / 5} Ohm";
+            this.resistorSecondLabel.Text = $"{2 * this.valueRange / 5} Ohm";
+            this.ResistorThirdLabel.Text = $"{3 * this.valueRange / 5} Ohm";
+            this.resistorFourthLabel.Text = $"{4 * this.valueRange / 5} Ohm";
         }
 
         private void diagramBox_Paint(object sender, PaintEventArgs e)
@@ -74,22 +74,41 @@ namespace Wheatstone
 
         private void textBox2_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.Equals(Keys.Enter))
+            try
             {
-                this.unknownResistor = Convert.ToSingle(textBox2.Text);
-                this.diagramBox.Refresh();
-                DrawCurve();
+                if (e.KeyCode.Equals(Keys.Enter))
+                {
+                    this.unknownResistor = Convert.ToSingle(textBox2.Text);
+                    textBox2.BackColor = Color.White;
+                    if (this.checkBoxClearGraphs.Checked)
+                    {
+                        this.diagramBox.Refresh();
+                    }
+                    DrawCurve();
+                }
+            }
+            catch (Exception exception)
+            {
+                textBox2.BackColor = Color.Red;
             }
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.Equals(Keys.Enter))
+            try
             {
-                this.valueRange = Convert.ToSingle(textBox1.Text);
-                this.diagramBox.Refresh();
-                SetDiagramText();
-                DrawCurve();
+                if (e.KeyCode.Equals(Keys.Enter))
+                {
+                    this.valueRange = Convert.ToSingle(textBox1.Text);
+                    this.diagramBox.Refresh();
+                    textBox1.BackColor = Color.White;
+                    SetDiagramText();
+                    DrawCurve();
+                }
+            }
+            catch (Exception exception)
+            {
+                textBox1.BackColor = Color.Red;
             }
         }
 
