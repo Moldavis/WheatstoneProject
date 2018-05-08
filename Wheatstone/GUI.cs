@@ -13,7 +13,7 @@ namespace Wheatstone
         public GUI()
         {
             this.valueRange = 10000;
-            this.unknownResistor = 6000;
+            this.unknownResistor = 4000;
             InitializeComponent();
         }
 
@@ -78,6 +78,32 @@ namespace Wheatstone
             {
                 this.valueRange = Convert.ToSingle(textBox1.Text);
                 DrawCurve();
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.unknownResistor = Convert.ToSingle(textBox2.Text);
+                textBox2.BackColor = Color.White;
+            }
+            catch (Exception exception)
+            {
+                textBox2.BackColor = Color.Red;
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.valueRange = Convert.ToSingle(textBox1.Text);
+                textBox1.BackColor = Color.White;
+            }
+            catch (Exception exception)
+            {
+                textBox1.BackColor = Color.Red;
             }
         }
     }
