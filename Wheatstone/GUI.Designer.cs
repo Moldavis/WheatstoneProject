@@ -72,7 +72,7 @@ namespace Wheatstone
             this.buttonToDrawGraph.Name = "buttonToDrawGraph";
             this.buttonToDrawGraph.Size = new System.Drawing.Size(108, 23);
             this.buttonToDrawGraph.TabIndex = 2;
-            this.buttonToDrawGraph.Text = "Draw graph";
+            this.buttonToDrawGraph.Text = "Graph zeichnen";
             this.buttonToDrawGraph.UseVisualStyleBackColor = true;
             this.buttonToDrawGraph.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -80,9 +80,9 @@ namespace Wheatstone
             // 
             this.buttonToClearImage.Location = new System.Drawing.Point(586, 80);
             this.buttonToClearImage.Name = "buttonToClearImage";
-            this.buttonToClearImage.Size = new System.Drawing.Size(108, 23);
+            this.buttonToClearImage.Size = new System.Drawing.Size(140, 23);
             this.buttonToClearImage.TabIndex = 3;
-            this.buttonToClearImage.Text = "Clear diagram";
+            this.buttonToClearImage.Text = "Diagramm zurücksetzen";
             this.buttonToClearImage.UseVisualStyleBackColor = true;
             this.buttonToClearImage.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -111,9 +111,9 @@ namespace Wheatstone
             this.unknownResistorInputLabel.AutoSize = true;
             this.unknownResistorInputLabel.Location = new System.Drawing.Point(583, 255);
             this.unknownResistorInputLabel.Name = "unknownResistorInputLabel";
-            this.unknownResistorInputLabel.Size = new System.Drawing.Size(123, 13);
+            this.unknownResistorInputLabel.Size = new System.Drawing.Size(165, 13);
             this.unknownResistorInputLabel.TabIndex = 6;
-            this.unknownResistorInputLabel.Text = "unknown resistor in Ohm";
+            this.unknownResistorInputLabel.Text = "zu messender Widerstand in Ohm";
             // 
             // voltageUpperBorderLabel
             // 
@@ -197,9 +197,9 @@ namespace Wheatstone
             this.checkBoxClearGraphs.AutoSize = true;
             this.checkBoxClearGraphs.Location = new System.Drawing.Point(586, 297);
             this.checkBoxClearGraphs.Name = "checkBoxClearGraphs";
-            this.checkBoxClearGraphs.Size = new System.Drawing.Size(101, 17);
+            this.checkBoxClearGraphs.Size = new System.Drawing.Size(154, 17);
             this.checkBoxClearGraphs.TabIndex = 16;
-            this.checkBoxClearGraphs.Text = "clear old graphs";
+            this.checkBoxClearGraphs.Text = "alte Graphen überzeichnen";
             this.checkBoxClearGraphs.UseVisualStyleBackColor = true;
             // 
             // dataGridValueTable

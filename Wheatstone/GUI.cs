@@ -9,11 +9,13 @@ namespace Wheatstone
     {
         private float valueRange;
         private float unknownResistor;
+        private bool inputValid;
 
         public GUI()
         {
             this.valueRange = 10000;
             this.unknownResistor = 4000;
+            this.inputValid = true;
             InitializeComponent();
             SetDiagramText();
         }
@@ -47,17 +49,20 @@ namespace Wheatstone
 
         private void UpdateGraph()
         {
-            DrawCurve();
-            FillValueTable();
-            if (!this.dataGridValueTable.Visible)
+            if (this.inputValid)
             {
-                dataGridValueTable.Visible = true;
+                DrawCurve();
+                FillValueTable();
+                if (!this.dataGridValueTable.Visible)
+                {
+                    dataGridValueTable.Visible = true;
+                }
             }
         }
 
         private void FillValueTable()
         {
-            var calculator = new CurrentCalculator(this.unknownResistor, this.valueRange);
+            var calculator = new CurrentCalculator(this.unknownResistor);
             var table = new DataTable();
             var pixelToValueRelation = this.valueRange / this.diagramBox.Width;
             int stepRange = 50;
@@ -107,7 +112,12 @@ namespace Wheatstone
                 if (e.KeyCode.Equals(Keys.Enter))
                 {
                     this.unknownResistor = Convert.ToSingle(textBox2.Text);
+                    if (this.unknownResistor <= 0)
+                    {
+                        throw new Exception("inputInvalid");
+                    }
                     textBox2.BackColor = Color.White;
+                    this.inputValid = true;
                     if (this.checkBoxClearGraphs.Checked)
                     {
                         this.diagramBox.Refresh();
@@ -118,6 +128,7 @@ namespace Wheatstone
             catch (Exception exception)
             {
                 textBox2.BackColor = Color.Red;
+                this.inputValid = false;
             }
         }
 
@@ -128,6 +139,10 @@ namespace Wheatstone
                 if (e.KeyCode.Equals(Keys.Enter))
                 {
                     this.valueRange = Convert.ToSingle(textBox1.Text);
+                    if (this.valueRange <= 0)
+                    {
+                        throw new Exception("inputInvalid");
+                    }
                     this.diagramBox.Refresh();
                     textBox1.BackColor = Color.White;
                     SetDiagramText();
@@ -137,6 +152,7 @@ namespace Wheatstone
             catch (Exception exception)
             {
                 textBox1.BackColor = Color.Red;
+                this.inputValid = false;
             }
         }
 
@@ -196,12 +212,10 @@ namespace Wheatstone
 
     public class CurrentCalculator
     {
-        private readonly float valueRange;
         private readonly float unknownResistor;
 
-        public CurrentCalculator(float unknownResistor, float valueRange)
+        public CurrentCalculator(float unknownResistor)
         {
-            this.valueRange = valueRange;
             this.unknownResistor = unknownResistor;
         }
 
