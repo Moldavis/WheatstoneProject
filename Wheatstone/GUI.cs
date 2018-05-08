@@ -90,7 +90,7 @@ namespace Wheatstone
         private PointF[] CalculatePoints()
         {
             var result = new PointF[this.diagramBox.Width];
-            var builder = new PointBuilder(new CurrentCalculator(this.unknownResistor, this.valueRange), this.diagramBox.Width, this.diagramBox.Height, this.valueRange);
+            var builder = new PointBuilder(new CurrentCalculator(this.unknownResistor), this.diagramBox.Width, this.diagramBox.Height, this.valueRange);
             for (int i = 0; i < this.diagramBox.Width; i++)
             {
                 result[i] = builder.Build(i);
@@ -111,11 +111,11 @@ namespace Wheatstone
             {
                 if (e.KeyCode.Equals(Keys.Enter))
                 {
-                    this.unknownResistor = Convert.ToSingle(textBox2.Text);
-                    if (this.unknownResistor <= 0)
+                    if (Convert.ToSingle(textBox2.Text) <= 0)
                     {
                         throw new Exception("inputInvalid");
                     }
+                    this.unknownResistor = Convert.ToSingle(textBox2.Text);
                     textBox2.BackColor = Color.White;
                     this.inputValid = true;
                     if (this.checkBoxClearGraphs.Checked)
@@ -138,13 +138,14 @@ namespace Wheatstone
             {
                 if (e.KeyCode.Equals(Keys.Enter))
                 {
-                    this.valueRange = Convert.ToSingle(textBox1.Text);
-                    if (this.valueRange <= 0)
+                    if (Convert.ToSingle(textBox1.Text) <= 0)
                     {
                         throw new Exception("inputInvalid");
                     }
+                    this.valueRange = Convert.ToSingle(textBox1.Text);
                     this.diagramBox.Refresh();
                     textBox1.BackColor = Color.White;
+                    this.inputValid = true;
                     SetDiagramText();
                     UpdateGraph();
                 }
@@ -160,12 +161,18 @@ namespace Wheatstone
         {
             try
             {
+                if (Convert.ToSingle(textBox2.Text) <= 0)
+                {
+                    throw new Exception("inputInvalid");
+                }
                 this.unknownResistor = Convert.ToSingle(textBox2.Text);
                 textBox2.BackColor = Color.White;
+                this.inputValid = true;
             }
             catch (Exception exception)
             {
                 textBox2.BackColor = Color.Red;
+                this.inputValid = false;
             }
         }
 
@@ -173,13 +180,19 @@ namespace Wheatstone
         {
             try
             {
+                if (Convert.ToSingle(textBox1.Text) <= 0)
+                {
+                    throw new Exception("inputInvalid");
+                }
                 this.valueRange = Convert.ToSingle(textBox1.Text);
+                this.inputValid = true;
                 SetDiagramText();
                 textBox1.BackColor = Color.White;
             }
             catch (Exception exception)
             {
                 textBox1.BackColor = Color.Red;
+                this.inputValid = false;
             }
         }
     }
