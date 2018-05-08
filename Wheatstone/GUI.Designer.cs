@@ -88,7 +88,7 @@ namespace Wheatstone
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(561, 586);
+            this.textBox1.Location = new System.Drawing.Point(558, 605);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(71, 20);
             this.textBox1.TabIndex = 4;
@@ -186,7 +186,7 @@ namespace Wheatstone
             // resistorUpperLabel
             // 
             this.resistorUpperLabel.AutoSize = true;
-            this.resistorUpperLabel.Location = new System.Drawing.Point(638, 589);
+            this.resistorUpperLabel.Location = new System.Drawing.Point(635, 608);
             this.resistorUpperLabel.Name = "resistorUpperLabel";
             this.resistorUpperLabel.Size = new System.Drawing.Size(29, 13);
             this.resistorUpperLabel.TabIndex = 15;
@@ -211,7 +211,7 @@ namespace Wheatstone
             this.dataGridValueTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridValueTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridValueTable.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridValueTable.Location = new System.Drawing.Point(750, 80);
+            this.dataGridValueTable.Location = new System.Drawing.Point(771, 80);
             this.dataGridValueTable.Name = "dataGridValueTable";
             this.dataGridValueTable.ReadOnly = true;
             this.dataGridValueTable.RowHeadersVisible = false;
@@ -244,7 +244,7 @@ namespace Wheatstone
             // resistorInputLabel
             // 
             this.resistorInputLabel.AutoSize = true;
-            this.resistorInputLabel.Location = new System.Drawing.Point(558, 609);
+            this.resistorInputLabel.Location = new System.Drawing.Point(532, 589);
             this.resistorInputLabel.Name = "resistorInputLabel";
             this.resistorInputLabel.Size = new System.Drawing.Size(132, 13);
             this.resistorInputLabel.TabIndex = 20;
