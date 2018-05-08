@@ -47,7 +47,9 @@ namespace Wheatstone
             this.resistorFourthLabel = new System.Windows.Forms.Label();
             this.resistorUpperLabel = new System.Windows.Forms.Label();
             this.checkBoxClearGraphs = new System.Windows.Forms.CheckBox();
+            this.dataGridValueTable = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.diagramBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridValueTable)).BeginInit();
             this.SuspendLayout();
             // 
             // diagramBox
@@ -197,11 +199,27 @@ namespace Wheatstone
             this.checkBoxClearGraphs.Text = "clear old graphs";
             this.checkBoxClearGraphs.UseVisualStyleBackColor = true;
             // 
+            // dataGridValueTable
+            // 
+            this.dataGridValueTable.AllowUserToAddRows = false;
+            this.dataGridValueTable.AllowUserToDeleteRows = false;
+            this.dataGridValueTable.AllowUserToResizeColumns = false;
+            this.dataGridValueTable.AllowUserToResizeRows = false;
+            this.dataGridValueTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridValueTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridValueTable.Location = new System.Drawing.Point(750, 80);
+            this.dataGridValueTable.Name = "dataGridValueTable";
+            this.dataGridValueTable.ReadOnly = true;
+            this.dataGridValueTable.RowHeadersVisible = false;
+            this.dataGridValueTable.Size = new System.Drawing.Size(203, 240);
+            this.dataGridValueTable.TabIndex = 17;
+            // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(877, 646);
+            this.ClientSize = new System.Drawing.Size(1002, 646);
+            this.Controls.Add(this.dataGridValueTable);
             this.Controls.Add(this.checkBoxClearGraphs);
             this.Controls.Add(this.resistorUpperLabel);
             this.Controls.Add(this.resistorFourthLabel);
@@ -221,6 +239,7 @@ namespace Wheatstone
             this.Name = "GUI";
             this.Text = "GUI";
             ((System.ComponentModel.ISupportInitialize)(this.diagramBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridValueTable)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +263,6 @@ namespace Wheatstone
         private Label resistorFourthLabel;
         private Label resistorUpperLabel;
         private CheckBox checkBoxClearGraphs;
+        private DataGridView dataGridValueTable;
     }
 }

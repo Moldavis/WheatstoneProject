@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -39,6 +40,23 @@ namespace Wheatstone
         private void button2_Click(object sender, EventArgs e)
         {
             DrawCurve();
+            FillValueTable();
+        }
+
+        private void FillValueTable()
+        {
+            var table = new DataTable();
+            table.Columns.Add("resistor");
+            table.Columns.Add("current");
+            for (int i = 0; i < 10; i++)
+            {
+                var foo = table.NewRow();
+                foo["resistor"] = i;
+                foo["current"] = i * i;
+                table.Rows.Add(foo);
+            }
+
+            dataGridValueTable.DataSource = table;
         }
 
         private void DrawCurve()
