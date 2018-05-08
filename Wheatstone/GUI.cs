@@ -187,6 +187,8 @@ namespace Wheatstone
                 this.valueRange = Convert.ToSingle(textBox1.Text);
                 this.inputValid = true;
                 SetDiagramText();
+                this.diagramBox.Refresh();
+                UpdateGraph();
                 textBox1.BackColor = Color.White;
             }
             catch (Exception exception)
