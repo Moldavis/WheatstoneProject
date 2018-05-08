@@ -30,14 +30,18 @@ namespace Wheatstone
         {
             for (int i = 1; i <= 5; i++)
             {
-                e.Graphics.DrawLine(new Pen(Color.Beige, 1), i * 100, 0, i * 100, 500);
-                e.Graphics.DrawLine(new Pen(Color.Beige, 1), 0, i * 100, 500, i * 100);
+                e.Graphics.DrawLine(new Pen(Color.Beige, 1), i * 100, 0, i * 100, this.diagramBox.Width);
+                e.Graphics.DrawLine(new Pen(Color.Beige, 1), 0, i * 100, this.diagramBox.Height, i * 100);
             }
-            e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, 250, 500, 250);
+            e.Graphics.DrawLine(new Pen(Color.Black, 1), 0, this.diagramBox.Height / 2, this.diagramBox.Width, this.diagramBox.Height / 2);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (this.checkBoxClearGraphs.Checked)
+            {
+                this.diagramBox.Refresh();
+            }
             UpdateGraph();
         }
 
@@ -55,13 +59,15 @@ namespace Wheatstone
         {
             var calculator = new CurrentCalculator(this.unknownResistor, this.valueRange);
             var table = new DataTable();
+            var pixelToValueRelation = this.valueRange / this.diagramBox.Width;
+            int stepRange = 50;
             table.Columns.Add("variabler Widerstand in Ohm");
             table.Columns.Add("Brücken- spannung in Volt");
             for (int i = 1; i <= 10; i++)
             {
                 var foo = table.NewRow();
-                foo["variabler Widerstand in Ohm"] = 50 * i * this.valueRange / 500;
-                foo["Brücken- spannung in Volt"] = calculator.CalculateCurrent(50 * i);
+                foo["variabler Widerstand in Ohm"] = stepRange * pixelToValueRelation * i;
+                foo["Brücken- spannung in Volt"] = calculator.CalculateCurrent(stepRange * pixelToValueRelation * i);
                 table.Rows.Add(foo);
             }
 
@@ -78,9 +84,9 @@ namespace Wheatstone
 
         private PointF[] CalculatePoints()
         {
-            var result = new PointF[500];
-            var builder = new PointBuilder(new CurrentCalculator(this.unknownResistor, this.valueRange));
-            for (int i = 0; i < 500; i++)
+            var result = new PointF[this.diagramBox.Width];
+            var builder = new PointBuilder(new CurrentCalculator(this.unknownResistor, this.valueRange), this.diagramBox.Width, this.diagramBox.Height, this.valueRange);
+            for (int i = 0; i < this.diagramBox.Width; i++)
             {
                 result[i] = builder.Build(i);
             }
@@ -165,18 +171,25 @@ namespace Wheatstone
     public class PointBuilder
     {
         private readonly CurrentCalculator currentCalculator;
+        private readonly int containerWidth;
+        private readonly int containerHeight;
+        private readonly float valueRange;
 
-        public PointBuilder(CurrentCalculator currentCalculator)
+        public PointBuilder(CurrentCalculator currentCalculator, int containerWidth, int containerHeight, float valueRange)
         {
             this.currentCalculator = currentCalculator;
+            this.containerWidth = containerWidth;
+            this.containerHeight = containerHeight;
+            this.valueRange = valueRange;
         }
 
         public PointF Build(int iteration)
         {
+            var pixelToValueRelation = this.valueRange / this.containerWidth;
             return new PointF
             {
                 X = iteration,
-                Y = 500 - (50 * this.currentCalculator.CalculateCurrent(iteration) + 250)
+                Y = this.containerWidth - (containerHeight / 10 * this.currentCalculator.CalculateCurrent(pixelToValueRelation * iteration) + this.containerWidth / 2)
             };
         }
     }
@@ -192,9 +205,8 @@ namespace Wheatstone
             this.unknownResistor = unknownResistor;
         }
 
-        public float CalculateCurrent(int iteration)
+        public float CalculateCurrent(float variableResistor)
         {
-            var variableResistor = iteration * this.valueRange / 500;
             const float baseCurrent = 10;
             const float staticResistor = 10000;
             return baseCurrent * ((staticResistor * this.unknownResistor - staticResistor * variableResistor) /
