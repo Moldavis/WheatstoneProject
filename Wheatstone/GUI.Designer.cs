@@ -48,6 +48,9 @@ namespace Wheatstone
             this.resistorUpperLabel = new System.Windows.Forms.Label();
             this.checkBoxClearGraphs = new System.Windows.Forms.CheckBox();
             this.dataGridValueTable = new System.Windows.Forms.DataGridView();
+            this.voltageAxisLabel = new System.Windows.Forms.Label();
+            this.resistorAxisLabel = new System.Windows.Forms.Label();
+            this.resistorInputLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.diagramBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridValueTable)).BeginInit();
             this.SuspendLayout();
@@ -65,7 +68,7 @@ namespace Wheatstone
             // 
             // buttonToDrawGraph
             // 
-            this.buttonToDrawGraph.Location = new System.Drawing.Point(586, 80);
+            this.buttonToDrawGraph.Location = new System.Drawing.Point(582, 325);
             this.buttonToDrawGraph.Name = "buttonToDrawGraph";
             this.buttonToDrawGraph.Size = new System.Drawing.Size(108, 23);
             this.buttonToDrawGraph.TabIndex = 2;
@@ -75,7 +78,7 @@ namespace Wheatstone
             // 
             // buttonToClearImage
             // 
-            this.buttonToClearImage.Location = new System.Drawing.Point(586, 166);
+            this.buttonToClearImage.Location = new System.Drawing.Point(586, 80);
             this.buttonToClearImage.Name = "buttonToClearImage";
             this.buttonToClearImage.Size = new System.Drawing.Size(108, 23);
             this.buttonToClearImage.TabIndex = 3;
@@ -106,7 +109,7 @@ namespace Wheatstone
             // unknownResistorInputLabel
             // 
             this.unknownResistorInputLabel.AutoSize = true;
-            this.unknownResistorInputLabel.Location = new System.Drawing.Point(586, 255);
+            this.unknownResistorInputLabel.Location = new System.Drawing.Point(583, 255);
             this.unknownResistorInputLabel.Name = "unknownResistorInputLabel";
             this.unknownResistorInputLabel.Size = new System.Drawing.Size(123, 13);
             this.unknownResistorInputLabel.TabIndex = 6;
@@ -207,19 +210,54 @@ namespace Wheatstone
             this.dataGridValueTable.AllowUserToResizeRows = false;
             this.dataGridValueTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridValueTable.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridValueTable.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridValueTable.Location = new System.Drawing.Point(750, 80);
             this.dataGridValueTable.Name = "dataGridValueTable";
             this.dataGridValueTable.ReadOnly = true;
             this.dataGridValueTable.RowHeadersVisible = false;
-            this.dataGridValueTable.Size = new System.Drawing.Size(203, 240);
+            this.dataGridValueTable.Size = new System.Drawing.Size(203, 266);
             this.dataGridValueTable.TabIndex = 17;
             this.dataGridValueTable.Visible = false;
+            // 
+            // voltageAxisLabel
+            // 
+            this.voltageAxisLabel.AutoSize = true;
+            this.voltageAxisLabel.Location = new System.Drawing.Point(24, 44);
+            this.voltageAxisLabel.Name = "voltageAxisLabel";
+            this.voltageAxisLabel.Size = new System.Drawing.Size(126, 13);
+            this.voltageAxisLabel.TabIndex = 18;
+            this.voltageAxisLabel.Text = "Brückenspannung in Volt";
+            // 
+            // resistorAxisLabel
+            // 
+            this.resistorAxisLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.resistorAxisLabel.AutoSize = true;
+            this.resistorAxisLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.resistorAxisLabel.Location = new System.Drawing.Point(586, 565);
+            this.resistorAxisLabel.Name = "resistorAxisLabel";
+            this.resistorAxisLabel.Size = new System.Drawing.Size(140, 13);
+            this.resistorAxisLabel.TabIndex = 19;
+            this.resistorAxisLabel.Text = "variabler Widerstand in Ohm";
+            // 
+            // resistorInputLabel
+            // 
+            this.resistorInputLabel.AutoSize = true;
+            this.resistorInputLabel.Location = new System.Drawing.Point(558, 609);
+            this.resistorInputLabel.Name = "resistorInputLabel";
+            this.resistorInputLabel.Size = new System.Drawing.Size(132, 13);
+            this.resistorInputLabel.TabIndex = 20;
+            this.resistorInputLabel.Text = "max. Wertebereich in Ohm";
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 646);
+            this.Controls.Add(this.resistorInputLabel);
+            this.Controls.Add(this.resistorAxisLabel);
+            this.Controls.Add(this.voltageAxisLabel);
             this.Controls.Add(this.dataGridValueTable);
             this.Controls.Add(this.checkBoxClearGraphs);
             this.Controls.Add(this.resistorUpperLabel);
@@ -265,5 +303,8 @@ namespace Wheatstone
         private Label resistorUpperLabel;
         private CheckBox checkBoxClearGraphs;
         private DataGridView dataGridValueTable;
+        private Label voltageAxisLabel;
+        private Label resistorAxisLabel;
+        private Label resistorInputLabel;
     }
 }

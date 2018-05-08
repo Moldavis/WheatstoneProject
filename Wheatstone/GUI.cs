@@ -55,13 +55,13 @@ namespace Wheatstone
         {
             var calculator = new CurrentCalculator(this.unknownResistor, this.valueRange);
             var table = new DataTable();
-            table.Columns.Add("resistor");
-            table.Columns.Add("current");
+            table.Columns.Add("variabler Widerstand in Ohm");
+            table.Columns.Add("Brücken- spannung in Volt");
             for (int i = 1; i <= 10; i++)
             {
                 var foo = table.NewRow();
-                foo["resistor"] = 50 * i * this.valueRange / 500;
-                foo["current"] = calculator.CalculateCurrent(50 * i);
+                foo["variabler Widerstand in Ohm"] = 50 * i * this.valueRange / 500;
+                foo["Brücken- spannung in Volt"] = calculator.CalculateCurrent(50 * i);
                 table.Rows.Add(foo);
             }
 
