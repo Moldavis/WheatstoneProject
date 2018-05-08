@@ -20,10 +20,10 @@ namespace Wheatstone
 
         private void SetDiagramText()
         {
-            this.resistorFirstLabel.Text = $"{this.valueRange / 5} Ohm";
-            this.resistorSecondLabel.Text = $"{2 * this.valueRange / 5} Ohm";
-            this.ResistorThirdLabel.Text = $"{3 * this.valueRange / 5} Ohm";
-            this.resistorFourthLabel.Text = $"{4 * this.valueRange / 5} Ohm";
+            this.resistorFirstLabel.Text = $@"{this.valueRange / 5} Ohm";
+            this.resistorSecondLabel.Text = $@"{2 * this.valueRange / 5} Ohm";
+            this.ResistorThirdLabel.Text = $@"{3 * this.valueRange / 5} Ohm";
+            this.resistorFourthLabel.Text = $@"{4 * this.valueRange / 5} Ohm";
         }
 
         private void diagramBox_Paint(object sender, PaintEventArgs e)
@@ -38,20 +38,30 @@ namespace Wheatstone
 
         private void button2_Click(object sender, EventArgs e)
         {
+            UpdateGraph();
+        }
+
+        private void UpdateGraph()
+        {
             DrawCurve();
             FillValueTable();
+            if (!this.dataGridValueTable.Visible)
+            {
+                dataGridValueTable.Visible = true;
+            }
         }
 
         private void FillValueTable()
         {
+            var calculator = new CurrentCalculator(this.unknownResistor, this.valueRange);
             var table = new DataTable();
             table.Columns.Add("resistor");
             table.Columns.Add("current");
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 var foo = table.NewRow();
-                foo["resistor"] = i;
-                foo["current"] = i * i;
+                foo["resistor"] = 50 * i * this.valueRange / 500;
+                foo["current"] = calculator.CalculateCurrent(50 * i);
                 table.Rows.Add(foo);
             }
 
@@ -69,7 +79,7 @@ namespace Wheatstone
         private PointF[] CalculatePoints()
         {
             var result = new PointF[500];
-            var builder = new PointBuilder(this.valueRange, this.unknownResistor);
+            var builder = new PointBuilder(new CurrentCalculator(this.unknownResistor, this.valueRange));
             for (int i = 0; i < 500; i++)
             {
                 result[i] = builder.Build(i);
@@ -96,7 +106,7 @@ namespace Wheatstone
                     {
                         this.diagramBox.Refresh();
                     }
-                    DrawCurve();
+                    UpdateGraph();
                 }
             }
             catch (Exception exception)
@@ -115,7 +125,7 @@ namespace Wheatstone
                     this.diagramBox.Refresh();
                     textBox1.BackColor = Color.White;
                     SetDiagramText();
-                    DrawCurve();
+                    UpdateGraph();
                 }
             }
             catch (Exception exception)
@@ -154,15 +164,11 @@ namespace Wheatstone
 
     public class PointBuilder
     {
-        private readonly float valueRange;
-        private readonly float unknownResistor;
         private readonly CurrentCalculator currentCalculator;
 
-        public PointBuilder(float valueRange, float unknownResistor)
+        public PointBuilder(CurrentCalculator currentCalculator)
         {
-            this.valueRange = valueRange;
-            this.unknownResistor = unknownResistor;
-            this.currentCalculator = new CurrentCalculator(unknownResistor, valueRange);
+            this.currentCalculator = currentCalculator;
         }
 
         public PointF Build(int iteration)

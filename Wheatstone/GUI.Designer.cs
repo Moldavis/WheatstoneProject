@@ -213,6 +213,7 @@ namespace Wheatstone
             this.dataGridValueTable.RowHeadersVisible = false;
             this.dataGridValueTable.Size = new System.Drawing.Size(203, 240);
             this.dataGridValueTable.TabIndex = 17;
+            this.dataGridValueTable.Visible = false;
             // 
             // GUI
             // 
