@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Wheatstone
@@ -62,14 +61,9 @@ namespace Wheatstone
         private void DrawCurve()
         {
             var points = CalculatePoints();
-            var zeroPoint = points.FirstOrDefault(p => Math.Abs(p.Y - 250) < 0.1);
 
             var graphics = this.diagramBox.CreateGraphics();
             graphics.DrawCurve(new Pen(Color.Crimson), points);
-            if (Math.Abs(zeroPoint.Y) > 0.01)
-            {
-                graphics.DrawLine(new Pen(Color.Black), 0, zeroPoint.Y, 500, zeroPoint.Y);
-            }
         }
 
         private PointF[] CalculatePoints()
@@ -162,11 +156,13 @@ namespace Wheatstone
     {
         private readonly float valueRange;
         private readonly float unknownResistor;
+        private readonly CurrentCalculator currentCalculator;
 
         public PointBuilder(float valueRange, float unknownResistor)
         {
             this.valueRange = valueRange;
             this.unknownResistor = unknownResistor;
+            this.currentCalculator = new CurrentCalculator(unknownResistor, valueRange);
         }
 
         public PointF Build(int iteration)
@@ -174,11 +170,23 @@ namespace Wheatstone
             return new PointF
             {
                 X = iteration,
-                Y = 500 - (50 * CalculateCurrent(iteration) + 250)
+                Y = 500 - (50 * this.currentCalculator.CalculateCurrent(iteration) + 250)
             };
         }
+    }
 
-        private float CalculateCurrent(int iteration)
+    public class CurrentCalculator
+    {
+        private readonly float valueRange;
+        private readonly float unknownResistor;
+
+        public CurrentCalculator(float unknownResistor, float valueRange)
+        {
+            this.valueRange = valueRange;
+            this.unknownResistor = unknownResistor;
+        }
+
+        public float CalculateCurrent(int iteration)
         {
             var variableResistor = iteration * this.valueRange / 500;
             const float baseCurrent = 10;
