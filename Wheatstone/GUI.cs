@@ -15,6 +15,15 @@ namespace Wheatstone
             this.valueRange = 10000;
             this.unknownResistor = 4000;
             InitializeComponent();
+            SetDiagramText();
+        }
+
+        private void SetDiagramText()
+        {
+            this.resistorFirstLabel.Text = $"{this.valueRange / 5} Ohm";
+            this.resistorSecondLabel.Text = $"{2*this.valueRange / 5} Ohm";
+            this.ResistorThirdLabel.Text = $"{3*this.valueRange / 5} Ohm";
+            this.resistorFourthLabel.Text = $"{4*this.valueRange / 5} Ohm";
         }
 
         private void diagramBox_Paint(object sender, PaintEventArgs e)
@@ -37,11 +46,11 @@ namespace Wheatstone
             var points = CalculatePoints();
             var zeroPoint = points.FirstOrDefault(p => Math.Abs(p.Y - 250) < 0.1);
 
-            var foo = this.diagramBox.CreateGraphics();
-            foo.DrawCurve(new Pen(Color.Crimson), points);
+            var graphics = this.diagramBox.CreateGraphics();
+            graphics.DrawCurve(new Pen(Color.Crimson), points);
             if (Math.Abs(zeroPoint.Y) > 0.01)
             {
-                foo.DrawLine(new Pen(Color.Black), 0, zeroPoint.Y, 500, zeroPoint.Y);
+                graphics.DrawLine(new Pen(Color.Black), 0, zeroPoint.Y, 500, zeroPoint.Y);
             }
         }
 
@@ -68,6 +77,7 @@ namespace Wheatstone
             if (e.KeyCode.Equals(Keys.Enter))
             {
                 this.unknownResistor = Convert.ToSingle(textBox2.Text);
+                this.diagramBox.Refresh();
                 DrawCurve();
             }
         }
@@ -77,6 +87,8 @@ namespace Wheatstone
             if (e.KeyCode.Equals(Keys.Enter))
             {
                 this.valueRange = Convert.ToSingle(textBox1.Text);
+                this.diagramBox.Refresh();
+                SetDiagramText();
                 DrawCurve();
             }
         }
@@ -99,6 +111,7 @@ namespace Wheatstone
             try
             {
                 this.valueRange = Convert.ToSingle(textBox1.Text);
+                SetDiagramText();
                 textBox1.BackColor = Color.White;
             }
             catch (Exception exception)

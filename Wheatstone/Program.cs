@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Windows.Forms;
 
 namespace Wheatstone
 {
@@ -7,6 +7,7 @@ namespace Wheatstone
         public static void Main(string[] args)
         {
             var form = new GUI();
+            form.AcceptButton = new Button();
             form.ShowDialog();
         }
     }

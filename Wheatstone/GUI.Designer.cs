@@ -37,8 +37,14 @@ namespace Wheatstone
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.voltageUpperBorderLabel = new System.Windows.Forms.Label();
+            this.voltageLowerBorderLabel = new System.Windows.Forms.Label();
+            this.voltageZeroLabel = new System.Windows.Forms.Label();
+            this.resistorZeroLabel = new System.Windows.Forms.Label();
+            this.resistorFirstLabel = new System.Windows.Forms.Label();
+            this.resistorSecondLabel = new System.Windows.Forms.Label();
+            this.ResistorThirdLabel = new System.Windows.Forms.Label();
+            this.resistorFourthLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.diagramBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -102,31 +108,87 @@ namespace Wheatstone
             this.label1.TabIndex = 6;
             this.label1.Text = "unknown resisitor in Ohm";
             // 
-            // label2
+            // voltageUpperBorderLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(39, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "5V";
+            this.voltageUpperBorderLabel.AutoSize = true;
+            this.voltageUpperBorderLabel.Location = new System.Drawing.Point(39, 80);
+            this.voltageUpperBorderLabel.Name = "voltageUpperBorderLabel";
+            this.voltageUpperBorderLabel.Size = new System.Drawing.Size(20, 13);
+            this.voltageUpperBorderLabel.TabIndex = 7;
+            this.voltageUpperBorderLabel.Text = "5V";
             // 
-            // label3
+            // voltageLowerBorderLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 567);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(23, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "-5V";
+            this.voltageLowerBorderLabel.AutoSize = true;
+            this.voltageLowerBorderLabel.Location = new System.Drawing.Point(39, 567);
+            this.voltageLowerBorderLabel.Name = "voltageLowerBorderLabel";
+            this.voltageLowerBorderLabel.Size = new System.Drawing.Size(23, 13);
+            this.voltageLowerBorderLabel.TabIndex = 8;
+            this.voltageLowerBorderLabel.Text = "-5V";
+            // 
+            // voltageZeroLabel
+            // 
+            this.voltageZeroLabel.AutoSize = true;
+            this.voltageZeroLabel.Location = new System.Drawing.Point(42, 325);
+            this.voltageZeroLabel.Name = "voltageZeroLabel";
+            this.voltageZeroLabel.Size = new System.Drawing.Size(20, 13);
+            this.voltageZeroLabel.TabIndex = 9;
+            this.voltageZeroLabel.Text = "0V";
+            // 
+            // resistorZeroLabel
+            // 
+            this.resistorZeroLabel.AutoSize = true;
+            this.resistorZeroLabel.Location = new System.Drawing.Point(77, 589);
+            this.resistorZeroLabel.Name = "resistorZeroLabel";
+            this.resistorZeroLabel.Size = new System.Drawing.Size(38, 13);
+            this.resistorZeroLabel.TabIndex = 10;
+            this.resistorZeroLabel.Text = "0 Ohm";
+            // 
+            // resistorFirstLabel
+            // 
+            this.resistorFirstLabel.AutoSize = true;
+            this.resistorFirstLabel.Location = new System.Drawing.Point(150, 589);
+            this.resistorFirstLabel.Name = "resistorFirstLabel";
+            this.resistorFirstLabel.Size = new System.Drawing.Size(0, 13);
+            this.resistorFirstLabel.TabIndex = 11;
+            // 
+            // resistorSecondLabel
+            // 
+            this.resistorSecondLabel.AutoSize = true;
+            this.resistorSecondLabel.Location = new System.Drawing.Point(250, 589);
+            this.resistorSecondLabel.Name = "resistorSecondLabel";
+            this.resistorSecondLabel.Size = new System.Drawing.Size(0, 13);
+            this.resistorSecondLabel.TabIndex = 12;
+            // 
+            // ResistorThirdLabel
+            // 
+            this.ResistorThirdLabel.AutoSize = true;
+            this.ResistorThirdLabel.Location = new System.Drawing.Point(350, 589);
+            this.ResistorThirdLabel.Name = "ResistorThirdLabel";
+            this.ResistorThirdLabel.Size = new System.Drawing.Size(0, 13);
+            this.ResistorThirdLabel.TabIndex = 13;
+            // 
+            // resistorFourthLabel
+            // 
+            this.resistorFourthLabel.AutoSize = true;
+            this.resistorFourthLabel.Location = new System.Drawing.Point(450, 589);
+            this.resistorFourthLabel.Name = "resistorFourthLabel";
+            this.resistorFourthLabel.Size = new System.Drawing.Size(0, 13);
+            this.resistorFourthLabel.TabIndex = 14;
             // 
             // GUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(877, 646);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.resistorFourthLabel);
+            this.Controls.Add(this.ResistorThirdLabel);
+            this.Controls.Add(this.resistorSecondLabel);
+            this.Controls.Add(this.resistorFirstLabel);
+            this.Controls.Add(this.resistorZeroLabel);
+            this.Controls.Add(this.voltageZeroLabel);
+            this.Controls.Add(this.voltageLowerBorderLabel);
+            this.Controls.Add(this.voltageUpperBorderLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -149,7 +211,13 @@ namespace Wheatstone
         private TextBox textBox1;
         private TextBox textBox2;
         private Label label1;
-        private Label label2;
-        private Label label3;
+        private Label voltageUpperBorderLabel;
+        private Label voltageLowerBorderLabel;
+        private Label voltageZeroLabel;
+        private Label resistorZeroLabel;
+        private Label resistorFirstLabel;
+        private Label resistorSecondLabel;
+        private Label ResistorThirdLabel;
+        private Label resistorFourthLabel;
     }
 }
